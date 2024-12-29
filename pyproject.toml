@@ -1,0 +1,17 @@
+[project]
+name = "todoist-sh"
+version = "0.1.0"
+description = "todoist CLI interface"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["todoist-api-python"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+tdst = "todoist_sh:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
