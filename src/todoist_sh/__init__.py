@@ -1,3 +1,5 @@
+from todoist_api_python.api import TodoistAPI
+
 from dotenv import load_dotenv
 import os
 import argparse
@@ -12,7 +14,16 @@ kr = CryptFileKeyring()
 
 
 def run():
-    print(get_api_key())
+    api_key = get_api_key()
+    print(get_tasks(api_key))
+
+
+def get_tasks(api_key):
+    api = TodoistAPI(api_key)
+    try:
+        return api.get_tasks()
+    except Exception as e:
+        print(e)
 
 
 def get_api_key():

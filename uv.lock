@@ -347,6 +347,7 @@ dependencies = [
     { name = "keyring" },
     { name = "keyrings-cryptfile" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "todoist-api-python" },
 ]
 
@@ -361,6 +362,7 @@ requires-dist = [
     { name = "keyrings-cryptfile" },
     { name = "pytest", marker = "extra == 'test'" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "todoist-api-python" },
 ]
 
