@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "todoist CLI interface"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = ["todoist-api-python"]
+authors = [{name = "Darrion Burgess", email = "darrionburgess@gmail.com"}]
+
+dependencies = ["todoist-api-python", "dotenv"]
 
 [project.optional-dependencies]
 test = ["pytest"]
