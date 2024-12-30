@@ -1,8 +1,15 @@
+"""argument parser for the CLI, primarly used for the built parser class"""
+
 import argparse
 from todoist_sh.commands import process_task_command, process_project_command
 
 parser = argparse.ArgumentParser(
     prog="tdst", description="A simple todoist CLI", epilog="Get Things Done!"
+)
+parser.add_argument("-c", "--config", help="path to config TOML to use")
+parser.add_argument("-k", "--key", help="the api key we are using for our operations")
+parser.add_argument(
+    "-e", "--encrypt", help="whether or not to encrypt the api key", type=bool
 )
 subcommands = parser.add_subparsers(
     title="top level subcommands",
@@ -29,6 +36,3 @@ project_argument = project_parser.add_argument(
     default="list",
 )
 project_parser.set_defaults(func=process_project_command)
-
-key_parser = subcommands.add_parser("set-key", help="manually set api key")
-key_parser.add_argument("api_key", help="todoist api key")

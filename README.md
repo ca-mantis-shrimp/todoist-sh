@@ -13,3 +13,20 @@ im mostly trying to leverage my existing work on [my treesitter project](https:/
 if you have no interest in the neovim plugin, thats fine! this was built so that if someone is wanting to build out vscode plugin or whatever other kind of plugin, that is fine
 
 you will however want to read the spec for the treesitter plugin so that you are aware of how i plan to capture this data as a file rather than work on an individual list or a database schema since i feel like todoist already did that part and i have not intention of reinventing the wheel
+
+## Configuration
+right now configuration just consitutes getting the api key into the program in the least invasive way possible while still respecting UNIX standards
+
+environment variables are the primary way to set it, but i have also created the `set-key` subcommand which can be used to set the API key directly where it will be stored in local storage for later user
+
+configuration is handled with the standard `platformdirs` package and can be used place the default configuration within the standard place, no matter what program you are using
+
+### A quick note on security
+in order to ensure best-practices, I actually store your api key into an encrypted file locally to ensure the api key is safe even in the case of a compromise.
+
+this has a few design considerations however. 
+
+the primary one being that the encrypted file itself also needs a password. when you first run either the normal command or the set key, you will first need to create a password for the key vault.
+This password should be put in a secure place, and later put into the "KEYRING_CRYPTFILE_PASSWORD" environment variable to ensure this does not ask you for the password every time you run the CLI.
+
+If this becomes too much of a burden, you can turn encryption off to eliminate this whole process, and just use the standard "TODOIST_API_KEY" environment variable
