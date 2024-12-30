@@ -1,7 +1,7 @@
 """argument parser for the CLI, primarly used for the built parser class"""
 
 import argparse
-from todoist_sh.commands import process_task_command, process_project_command
+from todoist_sh.commands import process_list_subcommand, process_api_key_subcommand
 
 parser = argparse.ArgumentParser(
     prog="tdst", description="A simple todoist CLI", epilog="Get Things Done!"
@@ -17,22 +17,27 @@ subcommands = parser.add_subparsers(
     help="you must always use a subcommand in order to run the CLI",
     required=True,
 )
-task_parser = subcommands.add_parser("tasks", aliases=["ta"], help="get all tasks")
-task_argument = task_parser.add_argument(
-    "task_command",
-    choices=("list", "add", "update"),
-    help="the task command to run",
-    default="list",
+list_parser = subcommands.add_parser("list", aliases=["l"], help="list various things")
+list_argument = list_parser.add_argument(
+    "list_command",
+    choices=("tasks", "projects", "config"),
+    help="the object type to list",
+    default="projects",
 )
-task_parser.set_defaults(func=process_task_command)
+list_parser.set_defaults(func=process_list_subcommand)
 
-project_parser = subcommands.add_parser(
-    "projects", aliases=["pr"], help="get all tasks"
+config_parser = subcommands.add_parser("set", aliases=["s"], help="get all tasks")
+
+config_subcommands = config_parser.add_subparsers(
+    title="Set Operations for configs",
+    description="set options at the shell and have it reflected in the user config",
+    help="choose from the various options and set the appropriate options at runtime",
 )
-project_argument = project_parser.add_argument(
-    "project_command",
-    choices=("list", "add", "update"),
-    help="the project command to run",
-    default="list",
+api_key_parser = config_subcommands.add_parser(
+    "set_key", aliases=["k"], help="set the api key for the config"
 )
-project_parser.set_defaults(func=process_project_command)
+api_key_argument = api_key_parser.add_argument(
+    "api_key",
+    help="the key you want to save to your config",
+)
+api_key_parser.set_defaults(func=process_api_key_subcommand)

@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 authors = [{name = "Darrion Burgess", email = "darrionburgess@gmail.com", github="ca-mantis-shrimp"}]
 
-dependencies = ["todoist-api-python", "python-dotenv", "keyring", "keyrings.cryptfile", "requests", "platformdirs"]
+dependencies = ["tomlkit", "todoist-api-python", "python-dotenv", "keyring", "keyrings.cryptfile", "requests", "platformdirs"]
 
 [project.optional-dependencies]
 test = ["pytest"]

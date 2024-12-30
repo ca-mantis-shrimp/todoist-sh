@@ -14,7 +14,7 @@ def get_tasks(api):
 def get_projects(api):
     """Given a working api, get all projects for the API"""
     try:
-        return api.get_tasks()
+        return api.get_projects()
     except Exception as e:
         print(e)
 

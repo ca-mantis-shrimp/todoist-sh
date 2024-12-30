@@ -9,6 +9,8 @@ import dotenv
 dotenv.load_dotenv()
 
 API_KEY_ENVVAR = os.getenv("TODOIST_API_KEY")
+ENCRYPTED_ENVVAR = os.getenv("TODOIST_SH_ENCRYPTED")
+
 CONFIG_FILE_PATH = os.getenv("TODOIST_SH_CONFIG_FILE")
 
 # Root directory of the project for navigation

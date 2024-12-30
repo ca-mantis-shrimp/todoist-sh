@@ -4,7 +4,7 @@ import todoist_sh.config.encrypt as encrypt
 
 import todoist_sh.definitions as defs
 
-import tomllib
+import tomlkit
 
 
 def process_config_and_key_args(args):
@@ -35,7 +35,7 @@ def get_config_at_path(path=defs.USER_CONFIG_FILE_PATH):
         print(f"Could not find file at {path}")
     else:
         with file:
-            return tomllib.load(file)
+            return tomlkit.load(file)
 
 
 def get_key(args, config):
